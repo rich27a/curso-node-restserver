@@ -33,9 +33,9 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     
     <script>
-        let url = (window.location.hostname.includes('localhost')) ?
-            'http://localhost:8080/api/auth/google' : 
-            'https://restserver-curso-rich.herokuapp.com/api/auth/google';
+        // let url = (window.location.hostname.includes('localhost')) ?
+        //     'http://localhost:8080/api/auth/google' : 
+        //     'https://restserver-curso-rich.herokuapp.com/api/auth/google';
 
         function handleCredentialResponse(response) {
            // decodeJwtResponse() is a custom function defined by you
@@ -47,7 +47,7 @@
            const body = {id_token: response.credential};
 
 
-           fetch(url,{
+           fetch('https://restserver-curso-rich.herokuapp.com/api/auth/google',{
                method: 'POST',
                headers: {
                    'Content-Type':'application/json'
