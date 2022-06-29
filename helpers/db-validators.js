@@ -1,6 +1,14 @@
 const Role = require('../models/role');
 const Usuario = require('../models/usuario');
+const Categoria = require('../models/categoria');
+const { response } = require('express');
+const Producto = require('../models/producto');
 
+// const esAdminRole = async(req, res = response) => {
+//     if(req.usuario.rol !== 'ADMIN_ROLE'){
+//         throw new Error(`El usuario ${req.usuario.nombre} no es administrador`);
+//     }
+// }
 
 const esRoleValido = async (rol = '') => {
     const existeRol = await Role.findOne({rol});
@@ -27,9 +35,34 @@ const existeUsuarioPorId = async(id) => {
     }
 }
 
+const existeCategoriaPorId = async(id) => {
+    
+    //verificamos si la categoria existe
+    const existeCategoria = await Categoria.findById(id);
+
+    if(!existeCategoria){
+        throw new Error(`La categoria con id ${id} no existe`);
+    }
+
+}
+
+const existeProductoPorId = async(id) => {
+    
+    //verificamos si la categoria existe
+    // const query = {id, estado: true}; //Los que tengan ese id y esten en true
+    // const existeProducto = await Producto.findOne(query);
+    const existeProducto = await Producto.findById(id);
+    if(!existeProducto){
+        throw new Error(`El producto con id ${id} no existe`);
+    }
+
+}
+
 module.exports = {
     esRoleValido,
     correoExiste,
-    existeUsuarioPorId
+    existeUsuarioPorId,
+    existeCategoriaPorId,
+    existeProductoPorId
 }
 

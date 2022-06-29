@@ -46,6 +46,8 @@
 
            const body = {id_token: response.credential};
 
+            //localhost:8080/api/auth/google        http://localhost:8080/api/auth/google //local
+            //https://restserver-curso-rich.herokuapp.com/api/auth/google   //produccion heroku
 
            fetch('https://restserver-curso-rich.herokuapp.com/api/auth/google',{
                method: 'POST',
